@@ -1,0 +1,20 @@
+[
+  {
+    "index": 0,
+    "title": "TED TALK 001",
+    "content": "CONTENT1",
+    "imageUrl": "/data/card/genre_002/card_001.jpg"
+  },
+  {
+    "index": 1,
+    "title": "TED TALK 002",
+    "content": "CONTENT2",
+    "imageUrl": "/data/card/genre_002/card_002.jpg"
+  },
+  {
+    "index": 2,
+    "title": "TED TALK 003",
+    "content": "CONTENT3",
+    "imageUrl": "/data/card/genre_002/card_003.jpg"
+  }
+]
