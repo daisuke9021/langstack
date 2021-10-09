@@ -1,38 +1,5 @@
-[plantuml]
-----
+= アーキテクチャ
 
-left to right direction
-skinparam linetype ortho
+include::infra/index.adoc[]
 
-actor User
-
-rectangle AWS {
-
-    rectangle Amplify {
-        [Frontend] as front
-    }
-
-    rectangle VPC1 {
-        rectangle ECS {
-            [Backend] as back
-        }
-    }
-
-    rectangle VPC2 {
-        database RDS as db {
-
-        }
-        [踏み台] as js
-    }
-
-}
-
-actor Developer
-
-User --> front : HTTPS
-User --> back : HTTPS
-back --> db : JDBC
-Developer --> js : SSH PortForward
-
-
-----
+include::datamodel/index.adoc[]
