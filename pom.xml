@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>jp.langstack</groupId>
+    <artifactId>langstack</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!-- 親POMなのでpackagingはPOM -->
+    <packaging>pom</packaging>
+
+    <name>langstack</name>
+
+    <!-- 親から子へ情報(dependencyManagement・pluginManagement・properties等)を渡したいものをここに書く
+         docsプロジェクトは別に親子関係にある必要はないのでここに定義しない -->
+    <modules>
+
+    </modules>
+
+    <properties>
+        <ant.target>install</ant.target>
+        <antfile>build.xml</antfile>
+    </properties>
+
+    <!-- rootプロジェクト配下のビルドでantタスクが実行されるようプラグインを定義 -->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <configuration>
+                    <target>
+                        <ant antfile="${antfile}" target="{ant.target}" />
+                    </target>
+                </configuration>
+            </pluigin>
+        </plugins>
+    </build>
+
+</project>
