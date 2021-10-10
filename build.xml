@@ -1,0 +1,26 @@
+<project xmlns:if="ant:if"
+    xmlns:unless="ant:unless" name="langstack" basedir=".">
+
+    <!-- mvnではなくmvnwを使うように -->
+    <condition property="mvn.cmd" value="${basedir}\mvnw.cmd" else="${basedir}\mvnw">
+        <os family="windows" />
+    </condition>
+
+    <!-- OSによってyarn実行ファイルを切り替える -->
+    <condition property="yarn.cmd" value="yarn.cmd" else="yarn">
+        <os family="windows" />
+    </condition>
+
+    <!-- 本build.xml呼び出し元で「target:install」と設定されているのでこいつが実行される -->
+    <target name="install">
+        <antcall target="init-container" />
+    </target>
+
+    <target name="init-container">
+        <!-- dockerコンテナ立ち上げ -->
+        <exec executable="docker-compose" failonerror="true">
+            <arg line="up -d --scale wait=0" />
+        </exec>
+    </target>
+
+</project>
