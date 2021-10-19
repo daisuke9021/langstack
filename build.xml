@@ -17,9 +17,17 @@
     </target>
 
     <target name="init-container">
+
+        <!-- docker-compose.ymlの同階層に.envを生成 -->
+        <exec executable="${mvn.cmd}" failonerror="true">
+            <arg line="process-resources -N" />
+        </exec>
+
         <!-- dockerコンテナ立ち上げ -->
         <exec executable="docker-compose" failonerror="true">
-            <arg line="up -d --scale wait=0" />
+            <!-- up：開始 -->
+            <!-- -d：detached...バックグラウンド実行 -->
+            <arg line="up -d" />
         </exec>
     </target>
 
