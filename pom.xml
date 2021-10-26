@@ -12,9 +12,9 @@
 
     <!-- 親から子へ情報(dependencyManagement・pluginManagement・properties等)を渡したいものをここに書く
          docsプロジェクトは別に親子関係にある必要はないのでここに定義しない -->
-    <!-- <modules>
-
-    </modules> -->
+    <modules>
+        <module>langstack-migration</module>
+    </modules>
 
     <properties>
         <!-- ビルド関連 -->
@@ -23,8 +23,10 @@
         <!-- DB関連 -->
         <db.username>langstack</db.username>
         <db.password>langstack</db.password>
+        <db.name>langstack</db.name>
+        <db.host>localhost</db.host>
         <db.port>5433</db.port>
-
+        <db.jdbc.url>jdbc:postgresql://${db.host}:${db.port}/${db.name}</db.jdbc.url>
     </properties>
 
     <!-- build setting -->
