@@ -33,11 +33,7 @@
 
     <target name="migrate">
         <exec executable="${mvn.cmd}" failonerror="true">
-            <!-- Plugin経由でFlyway実行 -->
-            <!-- <arg line="-f langstack-migration flyway:migrate -N" /> -->
-            <!-- MainクラスでFlyway実行 -->
-            <arg line="-f langstack-migration exec:java -N" />
-
+            <arg line="-f langstack-migration flyway:migrate -N" />
         </exec>
     </target>
 
