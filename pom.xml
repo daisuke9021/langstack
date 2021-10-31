@@ -14,6 +14,7 @@
          docsプロジェクトは別に親子関係にある必要はないのでここに定義しない -->
     <modules>
         <module>langstack-migration</module>
+        <module>langstack-entity</module>
     </modules>
 
     <properties>
@@ -26,12 +27,18 @@
         <db.name>langstack</db.name>
         <db.host>localhost</db.host>
         <db.port>5433</db.port>
+        <db.schema>public</db.schema>
+
+        <db.jdbc.groupId>org.postgresql</db.jdbc.groupId>
+        <db.jdbc.artifactId>postgresql</db.jdbc.artifactId>
+        <db.jdbc.version>42.2.18</db.jdbc.version>
         <db.jdbc.url>jdbc:postgresql://${db.host}:${db.port}/${db.name}</db.jdbc.url>
+        <db.jdbc.driver>org.postgresql.Driver</db.jdbc.driver>
     </properties>
 
     <!-- build setting -->
     <build>
-        <!-- maven-resource-pluginの設定 -->
+        <!-- maven-resources-pluginの設定 -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -44,8 +51,7 @@
         </resources>
 
         <!-- buildタグを定義する場合、デフォルトのゴールを設定してあげる -->
-        <!-- maven-antrun-pluginを定義しているので、そのゴールを設定 -->
-        <defaultGoal>antrun:run</defaultGoal>
+        <defaultGoal>process-resources antrun:run</defaultGoal>
 
         <!-- rootプロジェクト配下のビルドでantタスクが実行されるようプラグインを定義 -->
         <!-- pluginは定義しただけでは実行されない  -->
@@ -61,13 +67,14 @@
                     </target>
                 </configuration>
             </plugin>
-            <!-- mvnw process-resources -N と明示的に指定してあげないと実行されない  -->
-            <!-- なので、init-containerする前にコマンド実行してあげる -->
+            <!-- ★packaging:jar(子POM)のdefaultライフサイクルでは、process-resourcesフェーズでresources紐づいている。
+            　     packaging:pom(親POM)のdefaultライフサイクルでは、installフェーズ/deployフェーズしか紐づいていない。
+            　　　　→ 親POMでresourcesゴールを使いたい場合は、自分でprocess-resourceフェーズにresourcesゴールを紐づける必要がある。 -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+                <inherited>false</inherited>
                 <executions>
                     <execution>
-                        <!-- defaultライフサイクルでは「process-resouces」フェーズにてリソースの移動を行う -->
                         <phase>process-resources</phase>
                         <goals>
                             <goal>resources</goal>
@@ -77,13 +84,12 @@
             </plugin>
         </plugins>
 
+        <!-- 子POMで実行させたい場合は変わらずplugin内に定義が必要だが<version>指定不要となる -->
         <pluginManagement>
             <plugins>
                 <plugin>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>1.8</version>
-                    <!-- これを定義する＝子POMでは実行されないようにする -->
-                    <inherited>false</inherited>
                     <dependencies>
                         <!-- Antのコアライブラリ -->
                         <dependency>
@@ -98,12 +104,6 @@
                             <version>1.0b3</version>
                         </dependency>
                     </dependencies>
-                </plugin>
-
-                <!-- pluginManagementで設定したversionは、子含め親POM内でも適用される -->
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.1.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>

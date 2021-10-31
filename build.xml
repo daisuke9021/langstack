@@ -14,15 +14,13 @@
     <!-- 本build.xml呼び出し元で「target:install」と設定されているのでこいつが実行される -->
     <target name="install">
         <antcall target="init-container" />
+        <!-- TODO DB起動完了後migrateを実施する -->
         <antcall target="migrate" />
+        <antcall target="reverse" />
+
     </target>
 
     <target name="init-container">
-        <!-- docker-compose.ymlの同階層に.envを生成 -->
-        <exec executable="${mvn.cmd}" failonerror="true">
-            <arg line="process-resources -N" />
-        </exec>
-
         <!-- dockerコンテナ立ち上げ -->
         <exec executable="docker-compose" failonerror="true">
             <!-- up：開始 -->
@@ -34,6 +32,12 @@
     <target name="migrate">
         <exec executable="${mvn.cmd}" failonerror="true">
             <arg line="-f langstack-migration flyway:migrate -N" />
+        </exec>
+    </target>
+
+    <target name="reverse">
+        <exec executable="${mvn.cmd}" failonerror="true">
+            <arg line="-f langstack-entity -N" />
         </exec>
     </target>
 
