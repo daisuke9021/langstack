@@ -49,19 +49,16 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      // dark: false, --dark/lightの切替不要ならこれいらん
+      // サンプル雛型では「colors.blue.darken2」みたいな指定してたが「#----」の指定でいい。
       themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+        light: {
+          primary: '#4DD0E1',
+          secondary: '#8a8a8e',
+          accent: '#666666',
+        },
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
