@@ -1,6 +1,5 @@
 [
   {
-    "index": 0,
     "title": "SEX_EDUCATION 001",
     "content": "CONTENT1",
     "imageUrl": "/data/card/genre_001/card_001.jpg",
@@ -11,7 +10,6 @@
     }
   },
   {
-    "index": 1,
     "title": "SEX_EDUCATION 002",
     "content": "CONTENT2",
     "imageUrl": "/data/card/genre_001/card_002.jpg",
@@ -22,7 +20,6 @@
     }
   },
   {
-    "index": 2,
     "title": "SEX_EDUCATION 003",
     "content": "CONTENT3",
     "imageUrl": "/data/card/genre_001/card_003.jpg",
@@ -33,7 +30,6 @@
     }
   },
   {
-    "index": 3,
     "title": "SEX_EDUCATION 004",
     "content": "CONTENT4",
     "imageUrl": "/data/card/genre_001/card_004.jpg",
@@ -44,7 +40,6 @@
     }
   },
   {
-    "index": 4,
     "title": "SEX_EDUCATION 005",
     "content": "CONTENT5",
     "imageUrl": "/data/card/genre_001/card_005.jpg",

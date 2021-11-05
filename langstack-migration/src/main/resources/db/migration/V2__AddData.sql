@@ -1,2 +1,5 @@
-INSERT INTO hello VALUES('aaaaaaaaaabbbbbbbbbbc1','daisuke',1);
-INSERT INTO hello VALUES('aaaaaaaaaabbbbbbbbbbc2','takakuwa',2);
+/* genre */
+INSERT INTO genre VALUES ('genreId001','GENRE001');
+
+/* card */
+INSERT INTO card VALUES ('cardId001','TITLE001','CONTENT001','画像URL','2021-11-01','genreId001');

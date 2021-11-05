@@ -16,6 +16,7 @@
     <sql-type jdbc-type="OTHER" hibernate-type="java.lang.String" />
   </type-mapping>
 
-  <table-filter match-name="hello" package="jp.langstack.domain.hello" />
+  <table-filter match-name="card" package="jp.langstack.domain.card" />
+  <table-filter match-name="genre" package="jp.langstack.domain.genre" />
 
 </hibernate-reverse-engineering>
