@@ -15,7 +15,7 @@
                 <p
                   class="text-h6 ml-3"
                   v-for="card in theLastFiveCards"
-                  :key="card.index"
+                  :key="card.title"
                 >
                   <v-btn @click="showCardDialog(card)">
                     {{ card.title }}

@@ -13,12 +13,13 @@ rectangle Card {
         TITLE
         CONTENT
         IMAGE_URL
+        POST_DATE
     }
-    Card }o.. Topic
+    Card }o.. Genre
 }
 
-rectangle Topic {
-    entity Topic {
+rectangle Genre {
+    entity Genre {
         ID
         --
         NAME
