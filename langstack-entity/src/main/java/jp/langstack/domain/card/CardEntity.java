@@ -1,7 +1,8 @@
 package jp.langstack.domain.card;
-// Generated 2021/11/06 9:07:31 by Hibernate Tools 5.3.20.Final
+// Generated 2021/11/06 12:30:14 by Hibernate Tools 5.3.20.Final
 
 
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,23 +22,23 @@ public class CardEntity  implements java.io.Serializable {
 
 
      private String id;
-     private GenreEntity genreEntity;
+     private GenreEntity genre;
      private String title;
      private String content;
      private String imageUrl;
-     private String postDate;
+     private LocalDate postDate;
 
     public CardEntity() {
     }
 
 	
-    public CardEntity(String id, GenreEntity genreEntity) {
+    public CardEntity(String id, GenreEntity genre) {
         this.id = id;
-        this.genreEntity = genreEntity;
+        this.genre = genre;
     }
-    public CardEntity(String id, GenreEntity genreEntity, String title, String content, String imageUrl, String postDate) {
+    public CardEntity(String id, GenreEntity genre, String title, String content, String imageUrl, LocalDate postDate) {
        this.id = id;
-       this.genreEntity = genreEntity;
+       this.genre = genre;
        this.title = title;
        this.content = content;
        this.imageUrl = imageUrl;
@@ -58,12 +59,12 @@ public class CardEntity  implements java.io.Serializable {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="genre_id", nullable=false)
-    public GenreEntity getGenreEntity() {
-        return this.genreEntity;
+    public GenreEntity getGenre() {
+        return this.genre;
     }
     
-    public void setGenreEntity(GenreEntity genreEntity) {
-        this.genreEntity = genreEntity;
+    public void setGenre(GenreEntity genre) {
+        this.genre = genre;
     }
 
     
@@ -97,12 +98,12 @@ public class CardEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="post_date")
-    public String getPostDate() {
+    @Column(name="post_date", length=13)
+    public LocalDate getPostDate() {
         return this.postDate;
     }
     
-    public void setPostDate(String postDate) {
+    public void setPostDate(LocalDate postDate) {
         this.postDate = postDate;
     }
 
