@@ -1,5 +1,5 @@
 package jp.langstack.domain.genre;
-// Generated 2021/11/06 9:07:31 by Hibernate Tools 5.3.20.Final
+// Generated 2021/11/06 12:30:14 by Hibernate Tools 5.3.20.Final
 
 
 import java.util.HashSet;
@@ -23,7 +23,7 @@ public class GenreEntity  implements java.io.Serializable {
 
      private String id;
      private String name;
-     private Set<CardEntity> cardEntities = new HashSet<CardEntity>(0);
+     private Set<CardEntity> cards = new HashSet<CardEntity>(0);
 
     public GenreEntity() {
     }
@@ -32,10 +32,10 @@ public class GenreEntity  implements java.io.Serializable {
     public GenreEntity(String id) {
         this.id = id;
     }
-    public GenreEntity(String id, String name, Set<CardEntity> cardEntities) {
+    public GenreEntity(String id, String name, Set<CardEntity> cards) {
        this.id = id;
        this.name = name;
-       this.cardEntities = cardEntities;
+       this.cards = cards;
     }
    
      @Id 
@@ -60,13 +60,13 @@ public class GenreEntity  implements java.io.Serializable {
         this.name = name;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="genreEntity")
-    public Set<CardEntity> getCardEntities() {
-        return this.cardEntities;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="genre")
+    public Set<CardEntity> getCards() {
+        return this.cards;
     }
     
-    public void setCardEntities(Set<CardEntity> cardEntities) {
-        this.cardEntities = cardEntities;
+    public void setCards(Set<CardEntity> cards) {
+        this.cards = cards;
     }
 
 

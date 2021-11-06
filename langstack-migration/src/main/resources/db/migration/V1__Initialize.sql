@@ -8,7 +8,7 @@ CREATE TABLE card (
     title VARCHAR,
     content VARCHAR,
     image_url VARCHAR,
-    post_date VARCHAR,
+    post_date DATE,
     genre_id CHAR(22) NOT NULL REFERENCES genre
 );
 
