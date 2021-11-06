@@ -16,7 +16,7 @@
       <!-- createJDBCConfiguration()が呼び出される。返されるインスタンスは必ずしも「JdbcConfiguration」という名前である必要はない -->
       <!-- が、ここではJdbcConfigurationインスタンスが返されている-->
       <!-- packagename・revengfile・reversestarategyは、setXxxxx()でインスタンスにセットされる。 -->
-      <jdbcconfiguration packagename="package.name" revengfile="${basedir}/hibernate.reveng.xml" propertyFile="${project.build.directory}/hibernate.reveng.properties"/>
+      <jdbcconfiguration packagename="package.name" revengfile="${basedir}/hibernate.reveng.xml" propertyFile="${project.build.directory}/hibernate.reveng.properties" reversestrategy="jp.langstack.reverse.jpa.CustomReverseEngineeringStrategy" />
 
       <!-- Hbm2JavaExporterTask【JavaExporter extends GenericExporterが実行対象】の追加 -->
       <!-- JavaExporter ... GenericExporterでは指定する必要のあるtemplateName,filePatternが -->
