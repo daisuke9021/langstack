@@ -38,16 +38,5 @@ public class CardServiceTest {
         int count = cardService.getAllCardCount();
         assertEquals(23, count);
     }
-
-    @Test
-    public void search() {
-        Set<CardEntity> cards = cardService.search("aiueo");
-        System.out.println("検索件数：" + cards.size());
-        cards.stream().forEach(c -> {
-            System.out.println("--------------------------");
-            System.out.println("TITLE：" + c.getTitle());
-            System.out.println("CONTENT：" + c.getContent());
-        });
-    }
     
 }
