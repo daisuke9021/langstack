@@ -1,6 +1,5 @@
 package jp.langstack.domain.card;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -39,5 +38,13 @@ public interface CardRepository extends CrudRepository<CardEntity, String> {
         } 
         return activities;
     }
+
+    @Query(value = 
+            "SELECT DISTINCT card FROM CardEntity card " +
+            "LEFT JOIN FETCH card.genre " +
+            "WHERE card.postDate >= :fromDate " +
+            "ORDER BY card.postDate DESC"
+    )
+    public List<CardEntity> findTheLastWeekCards(@Param("fromDate") LocalDate fromDate);
 
 }
