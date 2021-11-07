@@ -41,13 +41,26 @@ public class CardServiceTest {
 
     @Test
     public void search() {
-        Set<CardEntity> cards = cardService.search("aiueo");
+        List<CardEntity> cards = cardService.search("aiueo");
         System.out.println("検索件数：" + cards.size());
         cards.stream().forEach(c -> {
             System.out.println("--------------------------");
             System.out.println("TITLE：" + c.getTitle());
             System.out.println("CONTENT：" + c.getContent());
+            System.out.println("POST DATE：" + c.getPostDate());
         });
+    }
+
+    @Test
+    public void getRecentCards() {
+        List<CardEntity> cards = cardService.getRecentCards();
+        System.out.println("検索件数：" + cards.size());
+        cards.stream().forEach(c -> {
+            System.out.println("--------------------------");
+            System.out.println("TITLE：" + c.getTitle());
+            System.out.println("POST DATE：" + c.getPostDate());
+        });
+
     }
         
 

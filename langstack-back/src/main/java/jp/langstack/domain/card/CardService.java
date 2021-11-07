@@ -25,7 +25,7 @@ public class CardService {
     = "SELECT DISTINCT card FROM CardEntity card LEFT JOIN FETCH card.genre ORDER BY card.postDate DESC";
 
     private static final String QUERY_SEARCH
-    = "SELECT DISTINCT card FROM CardEntity card LEFT JOIN FETCH card.genre WHERE card.title LIKE :keyword OR card.content LIKE :keyword";
+    = "SELECT DISTINCT card FROM CardEntity card LEFT JOIN FETCH card.genre WHERE card.title LIKE :keyword OR card.content LIKE :keyword ORDER BY card.postDate DESC";
     
     // MEMO：JPQLでは直接「LIMIT句」はクエリに書かない。entityManager経由で「setMaxResult()」で指定するのだそう。
     // https://www.baeldung.com/jpa-limit-query-results
@@ -45,14 +45,16 @@ public class CardService {
         return (int) cardRepo.count();
     }
 
-    public Set<CardEntity> search(String keyword) {
-        Set<CardEntity> cards = new TreeSet<>(Comparator.comparing(CardEntity::getPostDate));
+    public List<CardEntity> search(String keyword) {
         // TODO：specificationで置き換える
         // TODO：大文字小文字関係なく検索ひっかかるように
         TypedQuery<CardEntity> query = entityManager.createQuery(QUERY_SEARCH, CardEntity.class);
         query.setParameter("keyword", "%" + keyword + "%");
-        cards.addAll(query.getResultList());
-        return cards;
+        return query.getResultList();
+    }
+
+    public List<CardEntity> getRecentCards() {
+        return cardRepo.findTheLastWeekCards(LocalDate.now().minusDays(6));
     }
     
 }
