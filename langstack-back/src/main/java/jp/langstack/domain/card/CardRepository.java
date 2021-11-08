@@ -47,4 +47,12 @@ public interface CardRepository extends CrudRepository<CardEntity, String> {
     )
     public List<CardEntity> findTheLastWeekCards(@Param("fromDate") LocalDate fromDate);
 
+    @Query(value = 
+            "SELECT DISTINCT card FROM CardEntity card " +
+            "LEFT JOIN FETCH card.genre " +
+            "WHERE card.genre.id >= :genreId " +
+            "ORDER BY card.postDate DESC"
+    )    
+    public List<CardEntity> findByGenreId(@Param("genreId") String genreId);
+
 }

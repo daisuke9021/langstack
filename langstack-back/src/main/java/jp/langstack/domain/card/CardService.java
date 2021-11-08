@@ -56,5 +56,9 @@ public class CardService {
     public List<CardEntity> getRecentCards() {
         return cardRepo.findTheLastWeekCards(LocalDate.now().minusDays(6));
     }
+
+    public List<CardEntity> getCardsByGenre(String genreId) {
+        return cardRepo.findByGenreId(genreId);
+    }
     
 }
