@@ -63,5 +63,17 @@ public class CardServiceTest {
 
     }
         
+    @Test
+    public void getCardsByGenre() {
+        List<CardEntity> cards = cardService.getCardsByGenre("genreId001");
+        assertEquals(23, cards.size());
+        System.out.println("検索件数：" + cards.size());
+        cards.stream().forEach(c -> {
+            System.out.println("--------------------------");
+            System.out.println("TITLE：" + c.getTitle());
+            System.out.println("GENRE ID" + c.getGenre().getId());
+            System.out.println("POST DATE：" + c.getPostDate());
+        });
+    }
 
 }
