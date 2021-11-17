@@ -3,6 +3,7 @@ package jp.langstack.domain.card;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jp.langstack.domain.genre.GenreEntity;
 import jp.langstack.domain.genre.GenreService;
-import jp.langstack.interfaces.request.CardRequest;
+import jp.langstack.interfaces.request.AddCardRequest;
+import jp.langstack.interfaces.request.UpdateCardRequest;
 import jp.langstack.interfaces.response.CardResponse;
 import jp.langstack.interfaces.response.InitResponse;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +30,7 @@ public class CardController {
     private final GenreService genreService;
 
     @PostMapping("/add")
-    public void addCard(@RequestBody CardRequest request) {
+    public void addCard(@RequestBody AddCardRequest request) {
         // TODO：modelMapperとかつかう
         GenreEntity genre = new GenreEntity();
         genre.setId(request.getGenreId());
@@ -39,6 +41,16 @@ public class CardController {
         card.setImageUrl(request.getImageDataUrl());
         card.setGenre(genre);
         cardService.addCard(card);
+    }
+
+    @PostMapping("/update/{id}")
+    public void updateCard(@PathVariable String id, @RequestBody UpdateCardRequest request) {
+        cardService.updateCard(id, request.getTitle(), request.getContent());
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCard(@PathVariable String id) {
+        cardService.deleteCard(id);
     }
 
     @GetMapping("/init")

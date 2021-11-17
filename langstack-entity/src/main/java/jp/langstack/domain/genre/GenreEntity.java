@@ -1,5 +1,5 @@
 package jp.langstack.domain.genre;
-// Generated 2021/11/06 12:30:14 by Hibernate Tools 5.3.20.Final
+// Generated 2021/11/11 21:26:33 by Hibernate Tools 5.3.20.Final
 
 
 import java.util.HashSet;

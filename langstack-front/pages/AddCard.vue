@@ -47,7 +47,7 @@
       :dialog.sync="showDialog"
       headerTitle="NOTIFICATION"
       :hideCancel="true"
-      :maxWidth="800"
+      maxWidth="800px"
       @ok="backToHome"
      >
       {{ dialogMessage }}

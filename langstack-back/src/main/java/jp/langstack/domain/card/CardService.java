@@ -1,5 +1,6 @@
 package jp.langstack.domain.card;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -113,6 +114,19 @@ public class CardService {
         }
         int endIndex = base64str.indexOf(";base64");
         return base64str.substring(dataPrefix.length(), endIndex);
-      }
+    }
+    
+    public CardEntity updateCard(String id, String title, String content) {
+        CardEntity card = cardRepo.findById(id).orElseThrow(RuntimeException::new);
+        card.setTitle(title);
+        card.setContent(content);
+        return cardRepo.save(card);
+    }
+
+    public void deleteCard(String id) {
+        CardEntity card = cardRepo.findById(id).orElseThrow(RuntimeException::new);
+        s3Service.deleteObjectIfExists(new File(card.getImageUrl()).getName());
+        cardRepo.deleteById(id);
+    }
 
 }
