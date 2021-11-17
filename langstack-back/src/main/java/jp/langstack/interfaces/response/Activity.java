@@ -1,4 +1,4 @@
-package jp.langstack.interfaces;
+package jp.langstack.interfaces.response;
 
 import java.math.BigInteger;
 import java.sql.Date;

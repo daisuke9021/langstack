@@ -12,7 +12,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import jp.langstack.interfaces.Activity;
+import jp.langstack.interfaces.response.Activity;
 
 @Repository
 public interface CardRepository extends CrudRepository<CardEntity, String> {
@@ -50,7 +50,7 @@ public interface CardRepository extends CrudRepository<CardEntity, String> {
     @Query(value = 
             "SELECT DISTINCT card FROM CardEntity card " +
             "LEFT JOIN FETCH card.genre " +
-            "WHERE card.genre.id >= :genreId " +
+            "WHERE card.genre.id = :genreId " +
             "ORDER BY card.postDate DESC"
     )    
     public List<CardEntity> findByGenreId(@Param("genreId") String genreId);

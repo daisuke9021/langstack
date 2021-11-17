@@ -1,10 +1,13 @@
 import axios from "~/infras/AxiosFactory";
 import Card from "@/domains/card/Card";
+import CardAddForm from "@/domains/card/CardAddForm";
 import CardService from "@/domains/card/CardService";
 import InitResponse from "@/domains/response/InitResponse";
 
 export default class CardServiceImpl implements CardService {
-  addCard(card: Card): void {}
+  addCard(request: CardAddForm): void {
+    axios.post('/card/add', request);
+  }
   async init(): Promise<InitResponse> {
     return (await axios.get('/card/init')).data;
   }

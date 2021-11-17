@@ -7,6 +7,7 @@
 		<groupId>jp.langstack</groupId>
 		<artifactId>langstack</artifactId>
 		<version>1.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
 	</parent>
 
 	<groupId>jp.langstack</groupId>
@@ -14,6 +15,8 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<dependencies>
+		<!-- MEMO：resortwork-backの「mvnw -f resortwork-back spring-boot:run」実行時に
+			 entityのJARが見つからない時にハマった...parent階層で「mvn clean install」すればok  -->
 		<!-- entityプロジェクトの参照 -->
 		<dependency>
 			<groupId>jp.langstack</groupId>
@@ -35,6 +38,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -71,6 +79,16 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring.boot.version}</version>
+				<configuration>
+					<layout>ZIP</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
