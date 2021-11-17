@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "stub":  "yarn config-stub  && nuxt",
+    "local": "yarn config-local && nuxt",
     "build": "nuxt build",
+    "config-stub": "yarn ncopy static/config/config-stub.json static/config/config.json",
+    "config-local": "yarn ncopy static/config/config-local.json static/config/config.json",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "ncopy": "node -e \"require('fs').copyFileSync(process.argv[1], process.argv[2])\""
   },
   "dependencies": {
     "axios": "^0.21.4",

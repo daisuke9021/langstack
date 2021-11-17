@@ -12,12 +12,17 @@ public class S3Service {
 
     // TODO：プロパティファイル外だし
     private String bucketName = "langstack-bucket";
+    private String region = "ap-northeast-1";
 
-    public void uploadObjectIfNotExists(String objectKey, String base64Str) {
+    private static final String S3_OBJECT_URL_FORMAT = "https://%s.s3.%s.amazonaws.com/%s";
+
+    public String uploadObjectIfNotExists(String objectKey, String base64Str) {
         createBucketIfNotExists(bucketName);
         if(s3Repo.getObject(objectKey, bucketName).isEmpty()) {
             s3Repo.addObject(objectKey, bucketName, base64Str);
         }
+        // 例「https://langstack-bucket.s3.ap-northeast-1.amazonaws.com/k02gi38h66d2if.jpeg」
+        return String.format(S3_OBJECT_URL_FORMAT, bucketName, region, objectKey);
     }
 
     public void deleteObjectIfExists(String objectKey) {

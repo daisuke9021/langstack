@@ -14,8 +14,8 @@
          docsプロジェクトは別に親子関係にある必要はないのでここに定義しない -->
     <modules>
         <module>langstack-migration</module>
-        <module>langstack-entity</module>
         <module>langstack-back</module>
+        <module>langstack-entity</module>
     </modules>
 
     <!-- 子プロジェクトでもSpringのバージョン情報を継続させる -->
@@ -46,6 +46,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <!-- Spring関連 -->
         <spring.boot.version>2.5.6</spring.boot.version>
+        <backend.port>8085</backend.port>
         <!-- ビルド関連 -->
         <ant.target>install</ant.target>
         <antfile>./build.xml</antfile>

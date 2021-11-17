@@ -1,8 +1,12 @@
+import Genre from "@/domains/genre/Genre";
+
 export default class CardAddForm {
   constructor(
-    public genreId: string = "",
+    public id: string = "",
+    public genreId = "",
+    public genreName = "",
     public title: string = "",
     public content: string = "",
-    public imageDataUrl: string = ""
+    public imageDataUrl: string | ArrayBuffer | null = ""
   ) {}
 }

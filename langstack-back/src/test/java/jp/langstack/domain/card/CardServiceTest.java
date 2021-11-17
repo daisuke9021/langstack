@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import jp.langstack.interfaces.Activity;
+import jp.langstack.domain.genre.GenreEntity;
+import jp.langstack.interfaces.response.Activity;
+import jp.langstack.interfaces.response.CardResponse;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -21,7 +23,7 @@ public class CardServiceTest {
 
     @Test
     public void getTheLastFiveCards() {
-        List<CardEntity> cards = cardService.getTheLastFiveCards();
+        List<CardResponse> cards = cardService.getTheLastFiveCards();
         assertEquals(5, cards.size());
         cards.stream().forEach(c -> System.out.println("date：" + c.getPostDate() + ", id：" + c.getId()));
     }
@@ -41,7 +43,7 @@ public class CardServiceTest {
 
     @Test
     public void search() {
-        List<CardEntity> cards = cardService.search("aiueo");
+        List<CardResponse> cards = cardService.search("aiueo");
         System.out.println("検索件数：" + cards.size());
         cards.stream().forEach(c -> {
             System.out.println("--------------------------");
@@ -53,7 +55,7 @@ public class CardServiceTest {
 
     @Test
     public void getRecentCards() {
-        List<CardEntity> cards = cardService.getRecentCards();
+        List<CardResponse> cards = cardService.getRecentCards();
         System.out.println("検索件数：" + cards.size());
         cards.stream().forEach(c -> {
             System.out.println("--------------------------");
@@ -65,7 +67,7 @@ public class CardServiceTest {
         
     @Test
     public void getCardsByGenre() {
-        List<CardEntity> cards = cardService.getCardsByGenre("genreId001");
+        List<CardResponse> cards = cardService.getCardsByGenre("genreId001");
         assertEquals(23, cards.size());
         System.out.println("検索件数：" + cards.size());
         cards.stream().forEach(c -> {
@@ -74,6 +76,29 @@ public class CardServiceTest {
             System.out.println("GENRE ID" + c.getGenre().getId());
             System.out.println("POST DATE：" + c.getPostDate());
         });
+    }
+
+    @Test
+    public void addCard() {
+        // NEW GENRE
+        CardEntity card1 = new CardEntity();
+        card1.setTitle("テスト用タイトル1");
+        card1.setContent("テスト用コンテント1");
+        GenreEntity newGenre = new GenreEntity();
+        newGenre.setName("新しいGENRE");
+        card1.setGenre(newGenre);
+        cardService.addCard(card1);
+
+        // EXIST GENRE
+        // NEW GENRE
+        CardEntity card2 = new CardEntity();
+        card2.setTitle("テスト用タイトル2");
+        card2.setContent("テスト用コンテント2");
+        GenreEntity existGenre = new GenreEntity();
+        existGenre.setName("GENRE001");
+        card2.setGenre(existGenre);
+        cardService.addCard(card2);
+
     }
 
 }

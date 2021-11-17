@@ -12,6 +12,7 @@
         <groupId>jp.langstack</groupId>
         <artifactId>langstack</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <dependencies>

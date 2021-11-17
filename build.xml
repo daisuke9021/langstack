@@ -37,7 +37,7 @@
 
     <target name="reverse">
         <exec executable="${mvn.cmd}" failonerror="true">
-            <arg line="-f langstack-entity -N" />
+            <arg line="-f langstack-entity clean install -N" />
         </exec>
     </target>
 
