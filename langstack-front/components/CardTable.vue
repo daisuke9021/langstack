@@ -7,7 +7,7 @@
       @click:row="showCardDialog"
     >
     </v-data-table>
-    <CardDialog :card.sync="card" :showDialog.sync="showDialog" />
+    <CardDialog :card.sync="card" :showDialog.sync="showDialog"/>
   </div>
 </template>
 <script lang="ts">

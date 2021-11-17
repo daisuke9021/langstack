@@ -7,11 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CardRequest {
-    private String id;
-    private String genreId;
-    private String genreName;
+public class UpdateCardRequest {
     private String title;
     private String content;
-    private String imageDataUrl;
 }
