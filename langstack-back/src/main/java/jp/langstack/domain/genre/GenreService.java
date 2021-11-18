@@ -37,5 +37,9 @@ public class GenreService {
         genre.setName(name);
         return genreRepo.save(genre);
     }
+
+    public void deleteGenre(String id) {
+        genreRepo.deleteById(id);
+    }
     
 }

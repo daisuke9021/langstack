@@ -101,4 +101,10 @@ public class CardServiceTest {
 
     }
 
+    @Test
+    public void countCardsByGenreId() {
+        Integer count = cardService.countCardsByGenreId("genreId001");
+        System.out.println(count);
+    }
+
 }

@@ -125,8 +125,18 @@ public class CardService {
 
     public void deleteCard(String id) {
         CardEntity card = cardRepo.findById(id).orElseThrow(RuntimeException::new);
+        String genreId = card.getGenre().getId();
+        boolean deleteGenre = countCardsByGenreId(genreId) == 1;
         s3Service.deleteObjectIfExists(new File(card.getImageUrl()).getName());
         cardRepo.deleteById(id);
+        if (deleteGenre) {
+            genreServ.deleteGenre(genreId);
+        }
     }
+
+    public Integer countCardsByGenreId(String genreId) {
+        return cardRepo.findByGenreId(genreId).size();
+    }
+    
 
 }
